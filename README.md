@@ -1,1 +1,1 @@
-# CSCI3800HW2
+Place your controllers in this directory.
