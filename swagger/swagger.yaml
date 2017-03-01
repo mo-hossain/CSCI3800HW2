@@ -1,0 +1,129 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: HW2 for Web Api
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /gets:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: HW2_Get
+    get:
+      description: Server accepts only get requests
+      # used as the method name of the controller
+      operationId: get
+      parameters:
+        - name: name
+          in: query
+          description: The get request to the server
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Error"
+  /posts:
+    x-swagger-router-controller: HW2_Post
+    post:
+      description: Server accepts only post requests
+      # used as the method name of the controller
+      operationId: post
+      parameters:
+        - name: name
+          in: query
+          description: The post request to a server
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Error"
+  /puts:
+    x-swagger-router-controller: HW2_Put
+    put:
+      description: Server accepts only put requests
+      # used as the method name of the controller
+      operationId: put
+      parameters:
+        - name: name
+          in: query
+          description: The put request to a server
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Error"
+  /deletes:
+    x-swagger-router-controller: HW2_Delete
+    delete:
+      description: Server accepts only delete requests
+      # used as the method name of the controller
+      operationId: delete
+      parameters:
+        - name: name
+          in: query
+          description: The delete request to a server
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Response"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/Error"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  Response:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  Error:
+    required:
+      - message
+    properties:
+      message:
+        type: string
